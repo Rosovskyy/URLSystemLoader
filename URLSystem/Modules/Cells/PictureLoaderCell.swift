@@ -44,14 +44,18 @@ class PictureLoaderCell: UITableViewCell {
     }
     
     // MARK: - Public
-    func configureCell(downloaded: Bool, download: Download?) {
+    func configureCell(selectedSection: SelectedSection) {
         
-        if downloaded {
+        switch selectedSection {
+        case .toDo:
+            imageState = .todo
+            actionButton.setImage(#imageLiteral(resourceName: "startIcon"), for: .normal)
+        case .inProgress:
+            imageState = .loading
+            actionButton.setImage(#imageLiteral(resourceName: "pauseIcon"), for: .normal)
+        case .done:
+            imageState = .downladed
             actionButton.setImage(#imageLiteral(resourceName: "deleteIcon"), for: .normal)
-        }
-        
-        if let download = download {
-            actionButton.setImage(download.isDownloading ? #imageLiteral(resourceName: "pauseIcon") : #imageLiteral(resourceName: "startIcon"), for: .normal)
         }
         
         if let picture = picture {

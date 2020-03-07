@@ -18,12 +18,17 @@ class ViewController: UIViewController {
     private let urlService = URLService()
     private let downloadLocationPath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
     private var downloadSession: URLSession!
+    var selectedSection = SelectedSection.toDo
     let pictureDownloadService = PictureDownloadService()
     
     var pictures = [Picture]()
+    var toDoPictures = [Picture]()
+    var inProgressPictures = [Picture]()
+    var donePictures = [Picture]()
     
     // MARK: - IBOutlets
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var segmentView: UISegmentedControl!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,6 +45,9 @@ class ViewController: UIViewController {
         // Session
         downloadSession = URLSession(configuration: .default, delegate: self, delegateQueue: nil)
         
+        // Segment View
+        
+        
         // TableView
         tableView.delegate = self
         tableView.dataSource = self
@@ -54,7 +62,28 @@ class ViewController: UIViewController {
         urlService.picturesGot.bind { [weak self] pictures in
             MBProgressHUD.hide(for: self!.view, animated: true)
             self?.pictures = pictures
+            self?.toDoPictures = pictures
             self?.tableView.reloadData()
         }.disposed(by: disposeBag)
+    }
+    
+    // MARK: - Actions
+    @IBAction func indexChanged(_ sender: Any) {
+        switch segmentView.selectedSegmentIndex {
+        case 0:
+            pictures = toDoPictures
+            selectedSection = .toDo
+            tableView.reloadData()
+        case 1:
+            pictures = inProgressPictures
+            selectedSection = .inProgress
+            tableView.reloadData()
+        case 2:
+            pictures = donePictures
+            selectedSection = .done
+            tableView.reloadData()
+        default:
+            break
+        }
     }
 }

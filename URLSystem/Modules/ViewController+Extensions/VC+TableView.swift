@@ -20,11 +20,14 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
         
         let picture = pictures[indexPath.row]
         cell.picture = picture
-        cell.configureCell(downloaded: picture.loadingFinished ?? false, download: pictureDownloadService.activeDownloads[URL(string: picture.downloadUrl)!])
+        cell.configureCell(selectedSection: selectedSection)
                 
         cell.startLoading.bind {
             self.pictureDownloadService.startPictureDownload(picture: picture)
-            self.tableView.reloadRows(at: [indexPath], with: .automatic)
+            self.inProgressPictures.append(picture)
+            self.toDoPictures.remove(at: indexPath.row)
+            self.pictures.remove(at: indexPath.row)
+            self.tableView.deleteRows(at: [indexPath], with: .automatic)
         }.disposed(by: cell.disposeBag)
 
         cell.pauseLoading.bind {

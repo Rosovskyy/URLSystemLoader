@@ -24,6 +24,7 @@
 		EDC5F5442413A77100DA2936 /* VC+TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC5F5432413A77100DA2936 /* VC+TableView.swift */; };
 		EDC5F5462413A78500DA2936 /* VC+URLSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC5F5452413A78500DA2936 /* VC+URLSession.swift */; };
 		EDC5F5482413B55300DA2936 /* ImageState.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC5F5472413B55300DA2936 /* ImageState.swift */; };
+		EDD8A6C52413CE9D00B68051 /* SelectedSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDD8A6C42413CE9D00B68051 /* SelectedSection.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,6 +49,7 @@
 		EDC5F5432413A77100DA2936 /* VC+TableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VC+TableView.swift"; sourceTree = "<group>"; };
 		EDC5F5452413A78500DA2936 /* VC+URLSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VC+URLSession.swift"; sourceTree = "<group>"; };
 		EDC5F5472413B55300DA2936 /* ImageState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageState.swift; sourceTree = "<group>"; };
+		EDD8A6C42413CE9D00B68051 /* SelectedSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedSection.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,6 +118,7 @@
 				EDC5F533241397D700DA2936 /* Picture.swift */,
 				EDC5F53E2413A60100DA2936 /* Download.swift */,
 				EDC5F5472413B55300DA2936 /* ImageState.swift */,
+				EDD8A6C42413CE9D00B68051 /* SelectedSection.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -305,6 +308,7 @@
 				EDC5F5462413A78500DA2936 /* VC+URLSession.swift in Sources */,
 				EDC5F53F2413A60100DA2936 /* Download.swift in Sources */,
 				EDC5F5442413A77100DA2936 /* VC+TableView.swift in Sources */,
+				EDD8A6C52413CE9D00B68051 /* SelectedSection.swift in Sources */,
 				EDC5F534241397D700DA2936 /* Picture.swift in Sources */,
 				ED604E9B241023AD005B4F62 /* AppDelegate.swift in Sources */,
 				ED604E9D241023AD005B4F62 /* SceneDelegate.swift in Sources */,
