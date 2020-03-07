@@ -21,28 +21,28 @@ extension ViewController: URLSessionDownloadDelegate {
             let image = UIImage(data: data)
             for (ind, pict) in pictures.enumerated() {
                 if index == pict.id {
-                    pictures[ind].image = image
-                    donePictures.append(pictures[ind])
                     pictures.remove(at: ind)
-                    DispatchQueue.main.async {
-                        self.tableView.deleteRows(at: [IndexPath(row: ind, section: 0)], with: .automatic)
-                    }
-                }
-            }
-            
-            for (ind, pict) in inProgressPictures.enumerated() {
-                if index == pict.id {
-                    inProgressPictures.remove(at: ind)
                     break
                 }
             }
-//            pictures[index].image = image
+            for (ind, pict) in inProgressPictures.enumerated() {
+                if index == pict.id {
+                    inProgressPictures[ind].image = image
+                    donePictures.append(inProgressPictures[ind])
+                    inProgressPictures.remove(at: ind)
+                    switch selectedSection {
+                    case .inProgress:
+                        DispatchQueue.main.async {
+                            self.tableView.deleteRows(at: [IndexPath(row: ind, section: 0)], with: .automatic)
+                        }
+                    case .done:
+                        self.tableView.reloadData()
+                    default:
+                        break
+                    }
+                    break
+                }
+            }
         }
-        
-//        if let index = download?.picture?.id {
-//            DispatchQueue.main.async { [weak self] in
-//                self?.tableView.reloadRows(at: [IndexPath(row: index, section: 0)], with: .none)
-//            }
-//        }
     }
 }
