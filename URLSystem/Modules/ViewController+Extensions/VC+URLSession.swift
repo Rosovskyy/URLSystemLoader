@@ -19,20 +19,20 @@ extension ViewController: URLSessionDownloadDelegate {
         
         if let data = try? Data(contentsOf: location), let index = download?.picture?.id {
             let image = UIImage(data: data)
-            for pict in pictures {
+            for (ind, pict) in pictures.enumerated() {
                 if index == pict.id {
-                    pictures[index].image = image
-                    donePictures.append(pictures[index])
-                    pictures.remove(at: index)
+                    pictures[ind].image = image
+                    donePictures.append(pictures[ind])
+                    pictures.remove(at: ind)
                     DispatchQueue.main.async {
-                        self.tableView.deleteRows(at: [IndexPath(row: index, section: 0)], with: .automatic)
+                        self.tableView.deleteRows(at: [IndexPath(row: ind, section: 0)], with: .automatic)
                     }
                 }
             }
             
-            for pict in inProgressPictures {
+            for (ind, pict) in inProgressPictures.enumerated() {
                 if index == pict.id {
-                    inProgressPictures.remove(at: index)
+                    inProgressPictures.remove(at: ind)
                     break
                 }
             }
