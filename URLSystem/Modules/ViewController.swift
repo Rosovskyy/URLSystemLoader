@@ -8,14 +8,17 @@
 
 import UIKit
 import MBProgressHUD
+import RxSwift
+import RxCocoa
 
 class ViewController: UIViewController {
     
     // MARK: - Properties
-    let urlService = URLService()
+    private let disposeBag = DisposeBag()
+    private let urlService = URLService()
+    private let downloadLocationPath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+    private var downloadSession: URLSession!
     let pictureDownloadService = PictureDownloadService()
-    let downloadLocationPath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
-    var downloadSession: URLSession!
     
     var pictures = [Picture]()
     
@@ -26,6 +29,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         
         setupUI()
+        prepareBind()
     }
     
     // MARK: - Private
@@ -43,10 +47,14 @@ class ViewController: UIViewController {
         
         // Data
         pictureDownloadService.session = downloadSession
-        urlService.loadImagesData { [weak self] pictures in
+        urlService.loadImagesData()
+    }
+    
+    private func prepareBind() {
+        urlService.picturesGot.bind { [weak self] pictures in
             MBProgressHUD.hide(for: self!.view, animated: true)
             self?.pictures = pictures
             self?.tableView.reloadData()
-        }
+        }.disposed(by: disposeBag)
     }
 }

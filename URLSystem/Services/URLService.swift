@@ -7,6 +7,8 @@
 //
 
 import Foundation
+import RxSwift
+import RxCocoa
 
 class URLService {
     
@@ -16,17 +18,20 @@ class URLService {
     
     var pictures = [Picture]()
     
+    // MARK: - Rx
+    let picturesGot = PublishRelay<[Picture]>()
+    
     // MARK: - Public
-    func loadImagesData(completion: @escaping ([Picture])->()) {
+    func loadImagesData() {
         guard let url = URL(string: "https://picsum.photos/v2/list?page=1&limit=99") else { return }
         dataTask = session.dataTask(with: url) { [weak self] data, response, error in
             defer {
               self?.dataTask = nil
             }
             if let data = data, let response = response as? HTTPURLResponse, response.statusCode == 200 {
-                 self?.updateSearchResults(data)
+                self?.updateSearchResults(data)
                 DispatchQueue.main.async {
-                    completion(self!.pictures)
+                    self?.picturesGot.accept(self!.pictures)
                 }
             }
         }
