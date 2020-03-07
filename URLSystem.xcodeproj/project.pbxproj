@@ -70,6 +70,15 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		953B2BB62413C99200D8971A /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				ED604E9A241023AD005B4F62 /* AppDelegate.swift */,
+				ED604E9C241023AD005B4F62 /* SceneDelegate.swift */,
+			);
+			path = Application;
+			sourceTree = "<group>";
+		};
 		ED604E8E241023AD005B4F62 = {
 			isa = PBXGroup;
 			children = (
@@ -91,8 +100,7 @@
 		ED604E99241023AD005B4F62 /* URLSystem */ = {
 			isa = PBXGroup;
 			children = (
-				ED604E9A241023AD005B4F62 /* AppDelegate.swift */,
-				ED604E9C241023AD005B4F62 /* SceneDelegate.swift */,
+				953B2BB62413C99200D8971A /* Application */,
 				EDC5F53A2413A29600DA2936 /* Helpers */,
 				EDC5F532241397C500DA2936 /* Services */,
 				EDC5F52F2413979200DA2936 /* Model */,
