@@ -80,4 +80,14 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
         }
         return .none
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if selectedSection == .done {
+            let picture = donePictures[indexPath.row]
+            blurEffectView.isHidden = false
+            cellImageView.image = picture.image
+            cellImagePreView.isHidden = false
+            view.bringSubviewToFront(cellImagePreView)
+        }
+    }
 }

@@ -30,20 +30,54 @@
                                     <action selector="indexChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="BBP-RF-khr"/>
                                 </connections>
                             </segmentedControl>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Gfk-uE-E9K">
+                                <rect key="frame" x="0.0" y="75" width="414" height="787"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="psV-gq-6tN">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="787"/>
+                                    </imageView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bib-13-Q4U">
+                                        <rect key="frame" x="372" y="18" width="24" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="24" id="Eid-b4-dfP"/>
+                                            <constraint firstAttribute="height" constant="30" id="GHV-wr-AbG"/>
+                                        </constraints>
+                                        <state key="normal" image="closeButton"/>
+                                        <connections>
+                                            <action selector="closeCellImage:" destination="BYZ-38-t0r" eventType="touchUpInside" id="UC4-cL-jqL"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="bib-13-Q4U" firstAttribute="top" secondItem="Gfk-uE-E9K" secondAttribute="top" constant="18" id="GY9-UO-wyW"/>
+                                    <constraint firstItem="psV-gq-6tN" firstAttribute="leading" secondItem="Gfk-uE-E9K" secondAttribute="leading" id="Hdi-Oa-UEg"/>
+                                    <constraint firstItem="psV-gq-6tN" firstAttribute="top" secondItem="Gfk-uE-E9K" secondAttribute="top" id="giA-dh-VWM"/>
+                                    <constraint firstAttribute="trailing" secondItem="psV-gq-6tN" secondAttribute="trailing" id="kee-EW-HcS"/>
+                                    <constraint firstAttribute="bottom" secondItem="psV-gq-6tN" secondAttribute="bottom" id="oqC-CH-qdK"/>
+                                    <constraint firstAttribute="trailing" secondItem="bib-13-Q4U" secondAttribute="trailing" constant="18" id="sVp-D7-MfN"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="abA-zh-22Y" secondAttribute="trailing" id="5O5-hY-Cn5"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="abA-zh-22Y" secondAttribute="bottom" id="AlY-Gd-676"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="HAs-U7-mmy" secondAttribute="trailing" id="EtZ-XM-dL0"/>
+                            <constraint firstItem="Gfk-uE-E9K" firstAttribute="top" secondItem="HAs-U7-mmy" secondAttribute="bottom" id="LZG-tL-nCL"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Gfk-uE-E9K" secondAttribute="trailing" id="W8e-av-jWc"/>
                             <constraint firstItem="HAs-U7-mmy" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="bqC-mG-B4y"/>
                             <constraint firstItem="HAs-U7-mmy" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="hTG-YS-cbN"/>
+                            <constraint firstItem="Gfk-uE-E9K" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="iKK-rJ-dJP"/>
                             <constraint firstItem="abA-zh-22Y" firstAttribute="top" secondItem="HAs-U7-mmy" secondAttribute="bottom" id="vLO-ey-CCE"/>
                             <constraint firstItem="abA-zh-22Y" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="w79-Ts-CQB"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="Gfk-uE-E9K" secondAttribute="bottom" id="xU9-hE-Eds"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
+                        <outlet property="cellImagePreView" destination="Gfk-uE-E9K" id="tLV-IM-m38"/>
+                        <outlet property="cellImageView" destination="psV-gq-6tN" id="n8U-uU-chW"/>
                         <outlet property="segmentView" destination="HAs-U7-mmy" id="SV9-EG-sOx"/>
                         <outlet property="tableView" destination="abA-zh-22Y" id="hBW-6a-Hbb"/>
                     </connections>
@@ -53,4 +87,7 @@
             <point key="canvasLocation" x="137.68115942028987" y="75"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="closeButton" width="566" height="800"/>
+    </resources>
 </document>

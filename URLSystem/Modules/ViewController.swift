@@ -10,6 +10,7 @@ import UIKit
 import MBProgressHUD
 import RxSwift
 import RxCocoa
+import SnapKit
 
 class ViewController: UIViewController {
     
@@ -30,6 +31,11 @@ class ViewController: UIViewController {
     // MARK: - IBOutlets
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var segmentView: UISegmentedControl!
+    @IBOutlet weak var cellImageView: UIImageView!
+    @IBOutlet weak var cellImagePreView: UIView!
+    
+    // MARK: - Views
+    let blurEffectView = UIVisualEffectView(effect: UIBlurEffect(style: UIBlurEffect.Style.dark))
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,8 +59,14 @@ class ViewController: UIViewController {
         downloadSession = URLSession(configuration: .default, delegate: self, delegateQueue: nil)
         backgroundDownloadSession = URLSession(configuration: .background(withIdentifier: "MyBackgroundSession"), delegate: self, delegateQueue: nil)
         
-        // Segment View
-        
+        // CustomViews
+        blurEffectView.frame = view.bounds
+        blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        view.addSubview(blurEffectView)
+        blurEffectView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
+        }
+        blurEffectView.isHidden = true
         
         // TableView
         tableView.delegate = self
@@ -101,5 +113,9 @@ class ViewController: UIViewController {
 
     @objc func openactivity()  {
 
+    }
+    @IBAction func closeCellImage(_ sender: Any) {
+        cellImagePreView.isHidden = true
+        blurEffectView.isHidden = true
     }
 }
