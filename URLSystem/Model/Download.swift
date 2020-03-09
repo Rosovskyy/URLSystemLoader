@@ -12,6 +12,7 @@ class Download: NSObject {
     
     // MARK: - Properties
     var isDownloading = false
+    var progress: Float = 0
     var resumeData: Data?
     var task: URLSessionDownloadTask?
     var picture: Picture?

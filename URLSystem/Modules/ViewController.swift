@@ -18,6 +18,7 @@ class ViewController: UIViewController {
     private let urlService = URLService()
     private let downloadLocationPath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
     private var downloadSession: URLSession!
+    private var backgroundDownloadSession: URLSession!
     var selectedSection = SelectedSection.toDo
     let pictureDownloadService = PictureDownloadService()
     
@@ -37,6 +38,12 @@ class ViewController: UIViewController {
         prepareBind()
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        NotificationCenter.default.removeObserver(self, name: UIApplication.willResignActiveNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIApplication.didBecomeActiveNotification, object: nil)
+    }
+    
     // MARK: - Private
     private func setupUI() {
         
@@ -44,6 +51,7 @@ class ViewController: UIViewController {
         
         // Session
         downloadSession = URLSession(configuration: .default, delegate: self, delegateQueue: nil)
+        backgroundDownloadSession = URLSession(configuration: .background(withIdentifier: "MyBackgroundSession"), delegate: self, delegateQueue: nil)
         
         // Segment View
         
@@ -85,5 +93,13 @@ class ViewController: UIViewController {
         default:
             break
         }
+    }
+    
+    @objc func closeActivityController()  {
+
+    }
+
+    @objc func openactivity()  {
+
     }
 }

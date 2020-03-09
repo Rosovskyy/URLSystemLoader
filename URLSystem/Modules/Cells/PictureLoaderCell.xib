@@ -40,9 +40,17 @@
                             <action selector="actionButtonTapped:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="OG1-my-7Uw"/>
                         </connections>
                     </button>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Epg-9u-sYu">
+                        <rect key="frame" x="269" y="31.5" width="42" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="bottom" secondItem="4sI-5a-R52" secondAttribute="bottom" constant="12" id="09F-cL-X56"/>
+                    <constraint firstItem="Epg-9u-sYu" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="759-WN-uky"/>
+                    <constraint firstItem="ObG-pt-zZf" firstAttribute="leading" secondItem="Epg-9u-sYu" secondAttribute="trailing" constant="8" id="7cm-Nv-Ma1"/>
                     <constraint firstItem="iH2-Sk-B1e" firstAttribute="leading" secondItem="4sI-5a-R52" secondAttribute="trailing" constant="8" id="Bed-wW-xbP"/>
                     <constraint firstItem="4sI-5a-R52" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="12" id="STi-zT-mFh"/>
                     <constraint firstItem="4sI-5a-R52" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="Y1q-lK-mfx"/>
@@ -57,6 +65,7 @@
                 <outlet property="actionButton" destination="ObG-pt-zZf" id="Aue-BJ-t6r"/>
                 <outlet property="imageName" destination="iH2-Sk-B1e" id="oGt-DP-cjj"/>
                 <outlet property="pictureImageView" destination="4sI-5a-R52" id="ghI-FX-Hl4"/>
+                <outlet property="progressLabel" destination="Epg-9u-sYu" id="WWu-AZ-3dz"/>
             </connections>
             <point key="canvasLocation" x="173.18840579710147" y="122.20982142857142"/>
         </tableViewCell>

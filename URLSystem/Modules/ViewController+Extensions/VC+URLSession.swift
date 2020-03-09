@@ -30,17 +30,34 @@ extension ViewController: URLSessionDownloadDelegate {
                     inProgressPictures[ind].image = image
                     donePictures.append(inProgressPictures[ind])
                     inProgressPictures.remove(at: ind)
-                    switch selectedSection {
-                    case .inProgress:
-                        DispatchQueue.main.async {
+                    DispatchQueue.main.async {
+                        switch self.selectedSection {
+                        case .inProgress:
                             self.tableView.deleteRows(at: [IndexPath(row: ind, section: 0)], with: .automatic)
+                        case .done:
+                            self.tableView.reloadData()
+                        default:
+                            break
                         }
-                    case .done:
-                        self.tableView.reloadData()
-                    default:
-                        break
                     }
                     break
+                }
+            }
+        }
+    }
+    
+    func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, didWriteData bytesWritten: Int64, totalBytesWritten: Int64, totalBytesExpectedToWrite: Int64) {
+        guard let url = downloadTask.originalRequest?.url, let download = pictureDownloadService.activeDownloads[url] else { return }
+        
+        download.progress = Float(totalBytesWritten) / Float(totalBytesExpectedToWrite)
+        
+        DispatchQueue.main.async {
+            if self.selectedSection == .inProgress {
+                for (ind, pict) in self.inProgressPictures.enumerated() {
+                    if pict.id == download.picture?.id, let pictureLoaderCell = self.tableView.cellForRow(at: IndexPath(row: ind, section: 0)) as? PictureLoaderCell {
+                        pictureLoaderCell.progressLabel.text = "\(Int(round(download.progress*100)))%"
+                        break
+                    }
                 }
             }
         }

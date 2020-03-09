@@ -21,13 +21,24 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
         let picture = pictures[indexPath.row]
         cell.picture = picture
         cell.configureCell(selectedSection: selectedSection)
+        
+        if let progress = pictureDownloadService.activeDownloads[URL(string: picture.downloadUrl)!]?.progress {
+            cell.progressLabel.text = "\(Int(round(progress*100)))%"
+        }
+        
+        cell.selectionStyle = .none
                 
         cell.startLoading.bind {
             self.pictureDownloadService.startPictureDownload(picture: picture)
             self.inProgressPictures.append(picture)
-            self.toDoPictures.remove(at: indexPath.row)
-            self.pictures.remove(at: indexPath.row)
-            self.tableView.deleteRows(at: [indexPath], with: .automatic)
+            for (ind, pict) in self.toDoPictures.enumerated() {
+                if pict.id == picture.id {
+                    self.toDoPictures.remove(at: ind)
+                    self.pictures.remove(at: ind)
+                    self.tableView.deleteRows(at: [IndexPath(row: ind, section: 0)], with: .automatic)
+                    break
+                }
+            }
         }.disposed(by: cell.disposeBag)
 
         cell.pauseLoading.bind {
@@ -46,5 +57,27 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
         }.disposed(by: cell.disposeBag)
         
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete && selectedSection == .inProgress {
+            let picture = inProgressPictures[indexPath.row]
+            pictureDownloadService.activeDownloads[URL(string: picture.downloadUrl)!]?.task?.cancel()
+            pictureDownloadService.activeDownloads.removeValue(forKey: URL(string: picture.downloadUrl)!)
+            inProgressPictures.remove(at: indexPath.row)
+            pictures.remove(at: indexPath.row)
+            if tableView.numberOfRows(inSection: 0) >= indexPath.row {
+                tableView.deleteRows(at: [indexPath], with: .automatic)
+            }
+        } else {
+            return
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
+        if selectedSection != .toDo {
+            return .delete
+        }
+        return .none
     }
 }
