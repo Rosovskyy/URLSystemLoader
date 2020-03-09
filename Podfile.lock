@@ -5,12 +5,14 @@ PODS:
   - RxCocoa (4.5.0):
     - RxSwift (>= 4.4.2, ~> 4.4)
   - RxSwift (4.5.0)
+  - SnapKit (5.0.1)
 
 DEPENDENCIES:
   - MBProgressHUD
   - "NSObject+Rx"
   - RxCocoa (~> 4.0)
   - RxSwift (~> 4.0)
+  - SnapKit
 
 SPEC REPOS:
   trunk:
@@ -18,13 +20,15 @@ SPEC REPOS:
     - "NSObject+Rx"
     - RxCocoa
     - RxSwift
+    - SnapKit
 
 SPEC CHECKSUMS:
   MBProgressHUD: 3ee5efcc380f6a79a7cc9b363dd669c5e1ae7406
   "NSObject+Rx": 9884a92f19b610795c431e10b4e601913b59c9e9
   RxCocoa: cbf70265dc65a981d4ac982e513c10cf23df24a0
   RxSwift: f172070dfd1a93d70a9ab97a5a01166206e1c575
+  SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
 
-PODFILE CHECKSUM: 0a4f8c6658cdc51cc35e421b07638c28ba59fe85
+PODFILE CHECKSUM: a03b5c61aa35b087b19be73d14fdaaa3de6db766
 
 COCOAPODS: 1.8.4
