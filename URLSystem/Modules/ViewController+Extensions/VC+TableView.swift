@@ -60,11 +60,17 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete && selectedSection == .inProgress {
-            let picture = inProgressPictures[indexPath.row]
-            pictureDownloadService.activeDownloads[URL(string: picture.downloadUrl)!]?.task?.cancel()
-            pictureDownloadService.activeDownloads.removeValue(forKey: URL(string: picture.downloadUrl)!)
-            inProgressPictures.remove(at: indexPath.row)
+        if editingStyle == .delete {
+            var picture: Picture?
+            if selectedSection == .inProgress {
+                picture = inProgressPictures[indexPath.row]
+                inProgressPictures.remove(at: indexPath.row)
+            } else if selectedSection == .done {
+                picture = donePictures[indexPath.row]
+                donePictures.remove(at: indexPath.row)
+            }
+            pictureDownloadService.activeDownloads[URL(string: picture!.downloadUrl)!]?.task?.cancel()
+            pictureDownloadService.activeDownloads.removeValue(forKey: URL(string: picture! .downloadUrl)!)
             pictures.remove(at: indexPath.row)
             if tableView.numberOfRows(inSection: 0) >= indexPath.row {
                 tableView.deleteRows(at: [indexPath], with: .automatic)
