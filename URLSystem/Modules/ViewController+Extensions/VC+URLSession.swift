@@ -62,4 +62,15 @@ extension ViewController: URLSessionDownloadDelegate {
             }
         }
     }
+    
+    func urlSessionDidFinishEvents(forBackgroundURLSession session: URLSession) {
+        DispatchQueue.main.async {
+            guard let appDelegate = UIApplication.shared.delegate as? AppDelegate,
+                let backgroundCompletionHandler =
+                appDelegate.backgroundCompletionHandler else {
+                    return
+            }
+            backgroundCompletionHandler()
+        }
+    }
 }

@@ -56,7 +56,10 @@ class ViewController: UIViewController {
         MBProgressHUD.showAdded(to: view, animated: true)
         
         // Session
-        downloadSession = URLSession(configuration: .default, delegate: self, delegateQueue: nil)
+        let config = URLSessionConfiguration.default
+        config.requestCachePolicy = .reloadIgnoringCacheData
+        config.urlCache = nil
+        downloadSession = URLSession(configuration: config, delegate: self, delegateQueue: nil)
         backgroundDownloadSession = URLSession(configuration: .background(withIdentifier: "MyBackgroundSession"), delegate: self, delegateQueue: nil)
         
         // CustomViews
