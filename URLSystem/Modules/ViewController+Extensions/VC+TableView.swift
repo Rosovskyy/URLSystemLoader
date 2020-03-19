@@ -24,6 +24,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
         
         if let progress = pictureDownloadService.activeDownloads[URL(string: picture.downloadUrl)!]?.progress {
             cell.progressLabel.text = "\(Int(round(progress*100)))%"
+            cell.progressView.progress = progress
         }
         
         cell.selectionStyle = .none

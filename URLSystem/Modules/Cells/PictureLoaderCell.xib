@@ -45,15 +45,21 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="YRC-pe-Tcm">
+                        <rect key="frame" x="80" y="65" width="109" height="2"/>
+                    </progressView>
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="bottom" secondItem="4sI-5a-R52" secondAttribute="bottom" constant="12" id="09F-cL-X56"/>
                     <constraint firstItem="Epg-9u-sYu" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="759-WN-uky"/>
                     <constraint firstItem="ObG-pt-zZf" firstAttribute="leading" secondItem="Epg-9u-sYu" secondAttribute="trailing" constant="8" id="7cm-Nv-Ma1"/>
                     <constraint firstItem="iH2-Sk-B1e" firstAttribute="leading" secondItem="4sI-5a-R52" secondAttribute="trailing" constant="8" id="Bed-wW-xbP"/>
+                    <constraint firstItem="YRC-pe-Tcm" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="60" id="Bt9-xu-f5O"/>
+                    <constraint firstItem="YRC-pe-Tcm" firstAttribute="width" secondItem="iH2-Sk-B1e" secondAttribute="width" id="InO-rL-AzT"/>
                     <constraint firstItem="4sI-5a-R52" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="12" id="STi-zT-mFh"/>
                     <constraint firstItem="4sI-5a-R52" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="Y1q-lK-mfx"/>
                     <constraint firstItem="ObG-pt-zZf" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="fmP-NG-DfD"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="YRC-pe-Tcm" secondAttribute="bottom" constant="5" id="g4I-ms-m6O"/>
                     <constraint firstAttribute="trailing" secondItem="ObG-pt-zZf" secondAttribute="trailing" constant="20" id="kSC-B8-ico"/>
                     <constraint firstItem="iH2-Sk-B1e" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="rND-sy-wjm"/>
                     <constraint firstItem="4sI-5a-R52" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="12" id="uQL-QF-Hjz"/>
@@ -65,6 +71,7 @@
                 <outlet property="imageName" destination="iH2-Sk-B1e" id="oGt-DP-cjj"/>
                 <outlet property="pictureImageView" destination="4sI-5a-R52" id="ghI-FX-Hl4"/>
                 <outlet property="progressLabel" destination="Epg-9u-sYu" id="WWu-AZ-3dz"/>
+                <outlet property="progressView" destination="YRC-pe-Tcm" id="70o-cZ-ZNN"/>
             </connections>
             <point key="canvasLocation" x="11" y="-12"/>
         </tableViewCell>

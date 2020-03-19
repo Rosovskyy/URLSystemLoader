@@ -33,6 +33,7 @@ class PictureLoaderCell: UITableViewCell {
     @IBOutlet private weak var imageName: UILabel!
     @IBOutlet private weak var actionButton: UIButton!
     @IBOutlet weak var progressLabel: UILabel!
+    @IBOutlet weak var progressView: UIProgressView!
     
     // MARK: - Initialization
     override func awakeFromNib() {
@@ -51,14 +52,17 @@ class PictureLoaderCell: UITableViewCell {
         case .toDo:
             imageState = .todo
             progressLabel.isHidden = true
+            progressView.isHidden = true
             actionButton.setImage(#imageLiteral(resourceName: "startIcon"), for: .normal)
         case .inProgress:
             imageState = .loading
             progressLabel.isHidden = false
+            progressView.isHidden = false
             actionButton.setImage(#imageLiteral(resourceName: "pauseIcon"), for: .normal)
         case .done:
             imageState = .downladed
             progressLabel.isHidden = true
+            progressView.isHidden = true
             actionButton.setImage(#imageLiteral(resourceName: "deleteIcon"), for: .normal)
         }
         
